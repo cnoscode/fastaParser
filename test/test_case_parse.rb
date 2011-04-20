@@ -15,9 +15,9 @@ class TestArgs < Test::Unit::TestCase
     assert(tp.check_first_symbol == true)
   end
   
-  def test_each_line
+  def test_get_first_entry
     tp = TestParser.new('ccgga', 'test/test.fasta', 'results.txt')
-    assert(tp.iter_by_line == nil)
+    assert_equal(nil, @first_entry)
   end
   
 end 

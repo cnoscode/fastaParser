@@ -7,7 +7,10 @@ class TestParser
   def initialize( query, input_file, output_file )
     @query = query
     @input_file = input_file
-    @output_file = output_file  
+    @output_file = output_file
+    @first_entry = ''
+    @first_title = ''
+    @first_sequence = ''
   end
   
   def check_args 
@@ -32,19 +35,21 @@ class TestParser
     open_fasta.close
   end
   
-  def iter_by_line
+  def get_first_entry
     f_open = File.open( @input_file, "r" )
-    #f_open.each_line { |f| puts f }
-    while( cur_line = f_open.gets )
-      #puts cur_line
-    end
-    if cur_line == nil
-      puts "End of file"
-      return nil
-    end
-    f_open.close
+    entry_ctr = 0
+      f_open.each do |line|
+        if line == "\n"
+          entry_ctr += 1
+          break
+        end
+        @first_entry += line
+      end
+    puts @first_entry
+    
+    #puts entry_ctr
   end
-  
+
   
 end
 #STDERR.puts "FILE = #{__FILE__}"
@@ -52,5 +57,5 @@ end
   tp = TestParser.new( query = ARGV[0], input_file = ARGV[1], output_file = ARGV[2] )
   tp.check_args
   tp.check_first_symbol
-  tp.iter_by_line
+  tp.get_first_entry
 #end
