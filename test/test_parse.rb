@@ -47,7 +47,12 @@ class TestParser
       end
     puts @first_entry
     
-    #puts entry_ctr
+    entry_parts = @first_entry[1..-2].to_a
+    @first_title = entry_parts[0].chomp
+    @first_sequence = entry_parts[1]
+    
+    puts "Title: #{@first_title}"
+    puts "Sequence: #{@first_sequence}"
   end
 
   

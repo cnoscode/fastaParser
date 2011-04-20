@@ -18,6 +18,7 @@ class TestArgs < Test::Unit::TestCase
   def test_get_first_entry
     tp = TestParser.new('ccgga', 'test/test.fasta', 'results.txt')
     assert_equal(nil, @first_entry)
+    #assert_equal("first record", @first_title)
   end
   
 end 
